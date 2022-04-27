@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+
+    <title>Star Wars Quote App</title>
+</head>
+<body>
+<h1>May <span style="color: #e0b213" >Node and Express</span> be with you.</h1>
+<form action="/quotes" method="POST" id="quotesForm">
+    <div id="inputMessageDiv"></div>
+<!--    <input type="text" placeholder="name" name="name" required>-->
+<!--    <input  placeholder="Who to quote ?"  >-->
+    <select id="nameSelect" list="name"  name="name" required>
+        <option >Yoda
+        <option >Luke Skywalker
+        <option >C-3PO
+        <option >R2-D2
+        <option >Obi-Wan
+        <option >Han Solo
+        <option >Chewbacca
+        <option >Darth Vadar
+    </select>
+    <input type="text" placeholder="quote" name="quote" id="textInput" required>
+    <button type="submit" id="submitBtn" >Submit</button>
+</form>
+
+
+<%if (quotes.length >= 1){%>
+<div class="quoteContainer">
+<div class="quoteTitle">
+<h2 id="quotesListTitle"> Quotes </h2>
+</div>
+<div id="quotesList">
+<ul class="quotes">
+    <!-- Loop through quotes -->
+    <% for(var i = 0; i < quotes.length; i++) {%>
+        <li class="quote">
+            <!-- Output name from the iterated quote object -->
+            <span><%= quotes[i].name%></span> <span style="color: #e0b213; font-size: 20px"> : </span>
+            <!-- Output quote from the iterated quote object -->
+            <span><%= quotes[i].quote %></span>
+        </li>
+    <% } %>
+</ul>
+</div>
+
+
+    <button type="button" id="clearQuotesButton">Clear Quotes</button>
+<%}%>
+
+</div>
+
+<div id="changeBtnDiv">
+    <h2 id="invadeTitle">Darth Vadar invades!</h2>
+    <p>
+        Replace first Yoda's quote with a quote written by Darth Vadar
+    </p>
+    <button id="update-button" data-hover="Come to the dark side !">Replace Yoda's quote</button>
+</div>
+
+<div id="removeBtnDiv">
+    <h2 id="removeBtnTitle">Remove Darth Vadar!</h2>
+    <p>
+        Delete one Darth Vadar's quote. Does nothing if there are no more Darth
+        Vadar's quote
+    </p>
+    <div id="deleteBtnDiv">
+    <button id="delete-button"  data-hover="I'm your father?">Delete Darth Vadar's quote</button>
+    </div>
+</div>
+
+<div id="message"></div>
+
+<script src="/main.js"></script>
+</body>
+</html>
